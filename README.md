@@ -1,42 +1,50 @@
 # 🏦 Bank Management System
 
-A simple console-based Bank Management System developed in **C++**.
+A console-based **Bank Management System** developed in **C++**.
 
-This project allows users to manage bank clients using a text file as a database.
+This project simulates a simple banking system that allows users to manage client accounts through a menu-driven interface. All client data is stored in a text file, demonstrating file handling and CRUD operations in C++.
 
 ---
 
 ## ✨ Features
 
+### 👥 Client Management
+
 - 📋 Show all clients
-- ➕ Add new client
-- ❌ Delete client
+- ➕ Add a new client
 - ✏️ Update client information
-- 🔍 Search for a client
-- 💾 Save data to a text file
+- ❌ Delete a client
+- 🔍 Find a client by account number
+
+### 💰 Transactions
+
+- 💵 Deposit money
+- 💸 Withdraw money
+- 📊 Display total balances
+- ✔️ Automatic balance update
 
 ---
 
-## Technologies
+## 🛠 Technologies Used
 
 - C++
-- File Handling
-- Structures
-- Vectors
+- File Handling (`fstream`)
+- Structures (`struct`)
+- Vectors (`vector`)
 - Functions
-- Console Application
+- Menu-Driven Programming
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
-```
-Bank-Management-System
+```text
+Bank-Management-System/
 │
-├── src
+├── src/
 │   └── main.cpp
 │
-├── data
+├── data/
 │   └── AllClients.txt
 │
 ├── README.md
@@ -45,61 +53,88 @@ Bank-Management-System
 
 ---
 
-## How to Run
+## 🚀 Getting Started
 
-1. Clone the repository
+### Clone the repository
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/Bank-Management-System.git
 ```
 
-2. Open the project in Visual Studio.
+### Run the project
 
-3. Build and Run.
+1. Open the project in **Visual Studio**.
+2. Build the project.
+3. Run the application.
 
 ---
 
-## Sample Menu
+## 📋 Main Menu
 
-```
-========================
-        Menu
-========================
+```text
+========================================
+                Menu
+========================================
 
 [1] Show Client List
 [2] Add New Client
 [3] Delete Client
-[4] Update Client
+[4] Update Client Info
 [5] Find Client
-[6] Exit
+[6] Transactions
+[7] Exit
 ```
 
 ---
 
-## What I Learned
+## 💳 Transactions Menu
 
-- File handling
-- Data persistence
+```text
+========================================
+          Transactions Menu
+========================================
+
+[1] Deposit
+[2] Withdraw
+[3] Total Balances
+[4] Main Menu
+```
+
+---
+
+## 📚 What I Practiced
+
+- Working with multiple functions
+- File handling using `fstream`
+- Reading and writing text files
+- CRUD operations
+- Menu-driven applications
+- Searching and updating records
+- Deposit and withdrawal operations
 - Working with vectors
 - Structs
-- Functions
-- Menu-driven applications
-- CRUD operations
+- Console application development
 
 ---
 
-## Future Improvements
+## 🔮 Future Improvements
 
-- Password login
-- Deposit & Withdraw
+- User authentication
 - Transaction history
-- Transfer money
+- Money transfer between clients
+- Input validation
 - Better error handling
 - Object-Oriented Programming (OOP)
-- Database support
+- Database integration (SQL)
 
 ---
 
-## Author
+## 👨‍💻 Author
 
 **Salim Mahamat**
+
+Computer Science Student
+
+Learning C++, Data Structures, Algorithms, and Software Development.
+
+---
