@@ -28,7 +28,7 @@ struct stUser
     bool MarkForDelete = false;
 
 };
-struct sClientt
+struct stClient
 {
     string AccountNumber;
     string PinCode;
@@ -39,12 +39,12 @@ struct sClientt
 
 };
 
-bool FindClienttByAccountNumber(string AccountNumber, sClientt& Clientt);
+bool FindClienttByAccountNumber(string AccountNumber, stClient& Clientt);
 bool FindUserByUsername(string Username, stUser& user);
 
-sClientt ReadNewClienttInfo()
+stClient ReadNewClienttInfo()
 {
-    sClientt Clientt;
+    stClient Clientt;
     cout << "Enter Account Number? ";
     getline(cin >> ws, Clientt.AccountNumber);
 
@@ -114,7 +114,7 @@ vector<string> SplitString(string S1, string Delim)
 
 
 
-string ConvertClienttRecordToLine(sClientt Client, string Separator = "#//#")
+string ConvertClienttRecordToLine(stClient Client, string Separator = "#//#")
 {
     string stClienttRecord = "";
     stClienttRecord += Client.AccountNumber + Separator;
@@ -136,9 +136,9 @@ string ConvertUserRecordToLine(stUser User, string Separator = "#//#")
     return stClienttRecord;
 }
 
-sClientt ConvertLineToClienttRecord(string Line, string Separator = "#//#")
+stClient ConvertLineToClienttRecord(string Line, string Separator = "#//#")
 {
-    sClientt Clientt;
+    stClient Clientt;
 
     vector<string>vClienttData;
 
@@ -192,7 +192,7 @@ void AddNewClientt()
 {
 
 
-    sClientt client = ReadNewClienttInfo();
+    stClient client = ReadNewClienttInfo();
     AddDataLineToFile(FileName, ConvertClienttRecordToLine(client));
 
 }
@@ -208,9 +208,9 @@ void AddNewUser()
 
 
 
-vector <sClientt> LoadClienttsDataFromFileToVector(string FileName)
+vector <stClient> LoadClienttsDataFromFileToVector(string FileName)
 {
-    vector <sClientt> vClientts;
+    vector <stClient> vClientts;
     fstream MyFile;
     MyFile.open(FileName, ios::in);
 
@@ -218,7 +218,7 @@ vector <sClientt> LoadClienttsDataFromFileToVector(string FileName)
     {
 
         string Line;
-        sClientt Clientt;
+        stClient Clientt;
 
         while (getline(MyFile, Line))
         {
@@ -272,7 +272,7 @@ string Tabs(short Space)
     return sum;
 }
 
-void PrintClienttRecord(sClientt Clientt)
+void PrintClienttRecord(stClient Clientt)
 {
 
 
@@ -296,7 +296,7 @@ void PrintUserRecord(stUser User)
 }
 
 
-void PrintClienttBalances(sClientt Clientt)
+void PrintClienttBalances(stClient Clientt)
 {
 
 
@@ -307,7 +307,7 @@ void PrintClienttBalances(sClientt Clientt)
 
 }
 
-void PrintAllClienttsData(vector <sClientt> vClientts)
+void PrintAllClienttsData(vector <stClient> vClientts)
 {
 
 
@@ -321,7 +321,7 @@ void PrintAllClienttsData(vector <sClientt> vClientts)
     cout << "\n__________________________________________________________________________________________________________________\n";
 
 
-    for (sClientt Clientt : vClientts)
+    for (stClient Clientt : vClientts)
     {
 
         PrintClienttRecord(Clientt);
@@ -355,7 +355,7 @@ void PrintAllUsersData(vector <stUser> vUsersDatas)
 
 void PrintTotalBalances()
 {
-    vector <sClientt> vClientts;
+    vector <stClient> vClientts;
     vClientts = LoadClienttsDataFromFileToVector(FileName);
 
 
@@ -373,7 +373,7 @@ void PrintTotalBalances()
     }
     else
     {
-        for (sClientt Clientt : vClientts)
+        for (stClient Clientt : vClientts)
         {
 
             PrintClienttBalances(Clientt);
@@ -423,7 +423,7 @@ string EqualSymbol(short Space)
     return sum;
 }
 
-void PrintClienttCard(sClientt Clientt)
+void PrintClienttCard(stClient Clientt)
 {
 
 
@@ -456,11 +456,11 @@ void PrintUserCard(stUser User)
 
 
 
-bool FindClienttByAccountNumber(string AccountNumber, vector<sClientt> vClientts, sClientt& Clientt)
+bool FindClienttByAccountNumber(string AccountNumber, vector<stClient> vClientts, stClient& Clientt)
 {
 
 
-    for (sClientt C : vClientts)
+    for (stClient C : vClientts)
     {
         if (C.AccountNumber == AccountNumber)
         {
@@ -473,11 +473,11 @@ bool FindClienttByAccountNumber(string AccountNumber, vector<sClientt> vClientts
 
 
 }
-bool FindClienttByAccountNumber(string AccountNumber, sClientt& Clientt)
+bool FindClienttByAccountNumber(string AccountNumber, stClient& Clientt)
 {
-    vector<sClientt> vClientts = LoadClienttsDataFromFileToVector(FileName);
+    vector<stClient> vClientts = LoadClienttsDataFromFileToVector(FileName);
 
-    for (sClientt C : vClientts)
+    for (stClient C : vClientts)
     {
         if (C.AccountNumber == AccountNumber)
         {
@@ -527,11 +527,11 @@ bool FindUserByUsername(string Username, vector<stUser> vUsersDatas, stUser& use
 
 
 
-bool MarkForDeleteByAccountNumber(string AccountNumber, vector<sClientt>& vClientts)
+bool MarkForDeleteByAccountNumber(string AccountNumber, vector<stClient>& vClientts)
 {
 
 
-    for (sClientt& C : vClientts)
+    for (stClient& C : vClientts)
     {
         if (C.AccountNumber == AccountNumber)
         {
@@ -567,7 +567,7 @@ bool MarkForDeleteByUsername(string Username, vector<stUser>& vUsersDatas)
 
 
 
-vector<sClientt> SaveClienttDataToFile(string FileName, vector<sClientt> vClientts)
+vector<stClient> SaveClienttDataToFile(string FileName, vector<stClient> vClientts)
 {
     fstream MyFile;
     MyFile.open(FileName, ios::out);
@@ -575,7 +575,7 @@ vector<sClientt> SaveClienttDataToFile(string FileName, vector<sClientt> vClient
 
     if (MyFile.is_open())
     {
-        for (sClientt c : vClientts)
+        for (stClient c : vClientts)
         {
             if (c.MarkForDelete == false)
             {
@@ -610,10 +610,10 @@ vector<stUser> SaveUserDataToFile(string FileName, vector<stUser> vUsersDatas)
 }
 
 
-bool DeleteClienttInFile(string AccountNumber, vector<sClientt>& vClientts)
+bool DeleteClienttInFile(string AccountNumber, vector<stClient>& vClientts)
 {
 
-    sClientt Clientt;
+    stClient Clientt;
     char Answer = 'n';
 
     if (FindClienttByAccountNumber(AccountNumber, vClientts, Clientt))
@@ -700,9 +700,9 @@ bool DeleteUserInFile(string Username, vector<stUser>& vUsersDatas)
 
 
 
-sClientt ChangeClienttRecord(string AccountNumber)
+stClient ChangeClienttRecord(string AccountNumber)
 {
-    sClientt Clientt;
+    stClient Clientt;
 
     Clientt.AccountNumber = AccountNumber;
 
@@ -743,10 +743,10 @@ stUser ChangeUserRecord(string Username)
 
 
 
-bool UpdateClienttByAccountNumber(string AccountNumber, vector<sClientt>& vClientts)
+bool UpdateClienttByAccountNumber(string AccountNumber, vector<stClient>& vClientts)
 {
 
-    sClientt Clientt;
+    stClient Clientt;
     char Answer = 'n';
 
     if (FindClienttByAccountNumber(AccountNumber, vClientts, Clientt))
@@ -759,7 +759,7 @@ bool UpdateClienttByAccountNumber(string AccountNumber, vector<sClientt>& vClien
         if (Answer == 'y' || Answer == 'Y')
         {
 
-            for (sClientt& C : vClientts)
+            for (stClient& C : vClientts)
             {
                 if (C.AccountNumber == AccountNumber)
                 {
@@ -860,9 +860,9 @@ int ReadWithdrawAmount()
 }
 
 
-bool WithdrawMoney(string AccountNumber, vector<sClientt>& vClientts)
+bool WithdrawMoney(string AccountNumber, vector<stClient>& vClientts)
 {
-    sClientt Clientt;
+    stClient Clientt;
 
     int Balance = 0, NewAccountBalance = 0;
     char Answer = 'n';
@@ -893,7 +893,7 @@ bool WithdrawMoney(string AccountNumber, vector<sClientt>& vClientts)
     if (Answer == 'y' || Answer == 'Y')
     {
 
-        for (sClientt& C : vClientts)
+        for (stClient& C : vClientts)
         {
 
             if (C.AccountNumber == AccountNumber)
@@ -930,9 +930,9 @@ bool WithdrawMoney(string AccountNumber, vector<sClientt>& vClientts)
 
 }
 
-bool DepositMoney(string AccountNumber, vector<sClientt>& vClientts)
+bool DepositMoney(string AccountNumber, vector<stClient>& vClientts)
 {
-    sClientt Clientt;
+    stClient Clientt;
 
     int Balance = 0, NewAccountBalance = 0;
     char Answer = 'n';
@@ -961,7 +961,7 @@ bool DepositMoney(string AccountNumber, vector<sClientt>& vClientts)
     if (Answer == 'y' || Answer == 'Y')
     {
 
-        for (sClientt& C : vClientts)
+        for (stClient& C : vClientts)
         {
             if (C.AccountNumber == AccountNumber)
             {
@@ -983,7 +983,7 @@ bool DepositMoney(string AccountNumber, vector<sClientt>& vClientts)
 
 
 }
-bool DepositBalanceToClienttByAccountNumber(string AccountNumber, double Amount, vector<sClientt>& vClientts)
+bool DepositBalanceToClienttByAccountNumber(string AccountNumber, double Amount, vector<stClient>& vClientts)
 {
 
     char Answer = 'n';
@@ -994,7 +994,7 @@ bool DepositBalanceToClienttByAccountNumber(string AccountNumber, double Amount,
     if (Answer == 'y' || Answer == 'Y')
     {
 
-        for (sClientt& C : vClientts)
+        for (stClient& C : vClientts)
         {
             if (C.AccountNumber == AccountNumber)
             {
@@ -1018,7 +1018,7 @@ bool DepositBalanceToClienttByAccountNumber(string AccountNumber, double Amount,
 void AddClientts()
 {
 
-    sClientt  Clientt;
+    stClient  Clientt;
 
 
 
@@ -1083,8 +1083,8 @@ void ShowDepositScreen()
     cout << EqualSymbol(40) << endl;
 
 
-    sClientt Clientt;
-    vector<sClientt> vClientts = LoadClienttsDataFromFileToVector(FileName);
+    stClient Clientt;
+    vector<stClient> vClientts = LoadClienttsDataFromFileToVector(FileName);
 
     string AccountNumber = ReadAccountNumber();
 
@@ -1110,8 +1110,8 @@ void ShowWithdrawScreen()
     cout << EqualSymbol(40) << endl;
 
 
-    sClientt Clientt;
-    vector<sClientt> vClientts = LoadClienttsDataFromFileToVector(FileName);
+    stClient Clientt;
+    vector<stClient> vClientts = LoadClienttsDataFromFileToVector(FileName);
 
     string AccountNumber = ReadAccountNumber();
 
@@ -1150,7 +1150,7 @@ void ShowTotalBalancesScreen()
 void ShowPrintClienttsScreen()
 {
 
-    vector <sClientt> vClientt;
+    vector <stClient> vClientt;
     vClientt = LoadClienttsDataFromFileToVector(FileName);
 
 
@@ -1169,7 +1169,7 @@ void ShowDeleteClienttScreen()
     cout << Tabs(1) << "Delete Clientt Screen\n";
     cout << EqualSymbol(40) << endl;
 
-    vector <sClientt> vClientt = LoadClienttsDataFromFileToVector(FileName);
+    vector <stClient> vClientt = LoadClienttsDataFromFileToVector(FileName);
     string AccountNumber = ReadAccountNumber();
     DeleteClienttInFile(AccountNumber, vClientt);
 
@@ -1183,7 +1183,7 @@ void ShowUpdateClienttScreen()
     cout << EqualSymbol(40) << endl;
 
     string AccountNumber = ReadAccountNumber();
-    vector <sClientt> vClientt = LoadClienttsDataFromFileToVector(FileName);
+    vector <stClient> vClientt = LoadClienttsDataFromFileToVector(FileName);
 
     UpdateClienttByAccountNumber(AccountNumber, vClientt);
 }
@@ -1194,7 +1194,7 @@ void ShowFindClienttScreen()
     cout << Tabs(1) << "Find Clientt Screen\n";
     cout << EqualSymbol(40) << endl;
 
-    sClientt Clientt;
+    stClient Clientt;
     string AccountNumber = ReadAccountNumber();
 
     if (FindClienttByAccountNumber(AccountNumber, Clientt))
@@ -1484,5 +1484,19 @@ void ShowUsersManageMenuScreen()
     cout << EqualSymbol(40) << endl;
 
     PerformUserManageMenuOption((enUserManageOptions)ReadMenuOptions("Choose What You Want to Do [1 to 6]: "));
+
+}
+
+
+
+
+int main()
+{
+
+    ShowMainMenu();
+
+
+    system("pause>0");
+    return 0;
 
 }
